@@ -1,9 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var path = require('path');
 
 var app = express();
 
+app.use("/public", express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(session({
   secret: 'keyboard cat',
