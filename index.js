@@ -3,6 +3,8 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var path = require('path');
 var fs = require('fs');
+//var multer = require('multer');
+var busboy = require('connect-busboy');
 
 var app = express();
 
@@ -14,6 +16,23 @@ app.use(session({
   saveUninitialized: true
 }));
 
+
+//...
+app.use(busboy()); 
+//...
+app.post('/api/v1/audio', function(req, res) {
+    var fstream;
+    req.pipe(req.busboy);
+    req.busboy.on('file', function (fieldname, file, filename) {
+        console.log("Uploading: " + filename); 
+        fstream = fs.createWriteStream(__dirname + '/uploads/' + filename);
+        file.pipe(fstream);
+        fstream.on('close', function () {
+            res.send('audio uploaded successfully');
+        });
+    });
+});
+
 app.get('/', function (req, res) {
   res.send('Audio Cloud');
 });
@@ -24,13 +43,6 @@ app.get('/ping', function (req, res) {
 
 app.post('/api/v1/audio', function (req, res) {
 	console.log("Got POST /api/v1/audio");
-	fs.readFile(req.files.audioFile.path, function (err, data) {
-	  // ...
-	  var newPath = __dirname + "/uploads/audioFile";
-	  fs.writeFile(newPath, data, function (err) {
-	    res.send('Post audio to cloud successfully');
-	  });
-	});
 });
 
 
