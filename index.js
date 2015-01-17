@@ -20,9 +20,14 @@ app.get('/ping', function (req, res) {
 });
 
 app.post('/api/v1/audio', function (req, res) {
-  res.send('Post audio to cloud');
+	fs.readFile(req.files.audioFile.path, function (err, data) {
+	  // ...
+	  var newPath = __dirname + "/uploads/audioFile";
+	  fs.writeFile(newPath, data, function (err) {
+	    res.send('Post audio to cloud successfully');
+	  });
+	});
 });
-
 
 
 
