@@ -24,11 +24,13 @@ app.post('/api/v1/audio', function(req, res) {
     var fstream;
     req.pipe(req.busboy);
     req.busboy.on('file', function (fieldname, file, filename) {
-        console.log("Uploading: " + filename); 
-        fstream = fs.createWriteStream(__dirname + '/uploads/' + filename);
+        console.log("Uploading: " + filename);
+        var fileno = Date.now(); 
+        var newfilename = fileno+'.mp3';
+        fstream = fs.createWriteStream(__dirname + '/uploads/' + newfilename);
         file.pipe(fstream);
         fstream.on('close', function () {
-            res.send('audio uploaded successfully');
+            res.send(fileno);
         });
     });
 });
@@ -40,11 +42,5 @@ app.get('/', function (req, res) {
 app.get('/ping', function (req, res) {
   res.send('Pong!');
 });
-
-app.post('/api/v1/audio', function (req, res) {
-	console.log("Got POST /api/v1/audio");
-});
-
-
 
 app.listen(80);
