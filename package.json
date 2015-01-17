@@ -1,0 +1,36 @@
+{
+  "name": "AudioCloud",
+  "version": "1.0.0",
+  "description": "Record audio through IVR, listen, vote up, down, tag, flag, search, share, categorize",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ikbhal/AudioCloud.git"
+  },
+  "keywords": [
+    "ivr",
+    "audio",
+    "cloud",
+    "record",
+    "audio",
+    "vote",
+    "up",
+    "audio",
+    "search",
+    "audio"
+  ],
+  "author": "Shaik Ikbhal Basha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ikbhal/AudioCloud/issues"
+  },
+  "homepage": "https://github.com/ikbhal/AudioCloud",
+  "dependencies": {
+    "body-parser": "^1.10.1",
+    "express": "^4.11.0",
+    "express-session": "^1.10.1"
+  }
+}
