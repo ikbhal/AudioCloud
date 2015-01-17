@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var path = require('path');
+var fs = require('fs');
 
 var app = express();
 
@@ -22,6 +23,7 @@ app.get('/ping', function (req, res) {
 });
 
 app.post('/api/v1/audio', function (req, res) {
+	console.log("Got POST /api/v1/audio");
 	fs.readFile(req.files.audioFile.path, function (err, data) {
 	  // ...
 	  var newPath = __dirname + "/uploads/audioFile";
