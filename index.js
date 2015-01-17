@@ -5,6 +5,7 @@ var path = require('path');
 var fs = require('fs');
 //var multer = require('multer');
 var busboy = require('connect-busboy');
+var mongose = require('mongoose');
 
 var app = express();
 
