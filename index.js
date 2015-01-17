@@ -26,6 +26,7 @@ app.post('/api/v1/audio', function(req, res) {
     req.busboy.on('file', function (fieldname, file, filename) {
         console.log("Uploading: " + filename);
         var fileno = Date.now(); 
+        console.log("fileno:" + fileno);
         var newfilename = fileno+'.mp3';
         fstream = fs.createWriteStream(__dirname + '/uploads/' + newfilename);
         file.pipe(fstream);
